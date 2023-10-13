@@ -1,8 +1,30 @@
-# React + Vite
+Портфолио с фильтрами
+Необходимо реализовать портфолио с фильтрами, аналогичное указанному на изображении.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+portfolio-all
 
-Currently, two official plugins are available:
+Описание проекта
+Разработайте компонент класса Portfolio, хранящий список фильтров, активный фильтр, а также список проектов.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Сами фильтры отображаются в компоненте без состояния Toolbar, которому от Portfolio мы передаём три свойства:
+
+filters — список фильтров, название которых совпадает с категориями проектов;
+selected — активный фильтр;
+onSelectFilter(filter) — обработчик события, который реагирует на выбор пользователем одного из фильтров, обработчик принимает один аргумент — строку с названием фильтра.
+Пример:
+
+<Toolbar
+  filters={["All", "Websites", "Flayers", "Business Cards"]}
+  selected="All"
+  onSelectFilter={(filter) => {console.log(filter);}}/>
+В этом примере при выборе фильтра его название будет выведено в консоль. Например, «Business Cards».
+
+Изображения самих проектов отображаются компонентом без состояния ProjectList, которому от Portfolio мы передаём список проектов — в свойство projects. Отображение проектов — это единственная ответственность компонента ProjectList.
+
+Чтобы компонент Portfolio мог реагировать на выбор пользователем фильтра проектов, например, Business Cards, и передавать отфильтрованные по категории Business Cards проекты в компонент ProjectList, в класс Portfolio необходимо добавить состояние (state).
+
+Ваша задача:
+
+установить состояние выбранного фильтра в обработчике события, который Portfolio передаёт в свойство onSelectFilter компонента Toolbar;
+из компонента Portfolio передать активный фильтр в свойство selected компонента Toolbar;
+в компоненте Portfolio отфильтровать по активному фильтру проекты и передать их в компонент ProjectList.
